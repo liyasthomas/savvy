@@ -16,9 +16,9 @@
 
 ## About the app
 
-Savvy is a scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB.
+Savvy is a scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB on [AWS Amplify Hackathon by Hashnode](https://townhall.hashnode.com/announcing-aws-amplify-hackathon-on-hashnode).
 
-### Develope
+### Develop
 
 1. First install and configure the Amplify CLI.
 
@@ -59,3 +59,7 @@ $ amplify push --y
 ```sh
 $ npm start
 ```
+
+## Deploy
+
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/liyasthomas/savvy)

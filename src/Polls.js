@@ -164,28 +164,80 @@ export default function Polls() {
       <h1 className="text-2xl font-semibold text-gray-800">
         Collect feedback from customers and public
       </h1>
-      <p className="py-4">
+      <p className="py-4 md:w-3/5">
         Savvy is a scalable serverless customer feedback app - built with AWS
-        Amplify, AWS AppSync, and Amazon DynamoDB.
-      </p>
-      {state.polls.map((poll, index) => (
-        <div
-          className="flex px-6 py-4 mb-4 bg-gray-100 border border-gray-200 rounded-lg"
-          key={poll.id}
+        Amplify, AWS AppSync, and Amazon DynamoDB on{" "}
+        <a
+          href="https://townhall.hashnode.com/announcing-aws-amplify-hackathon-on-hashnode"
+          target="_blank"
+          className="text-indigo-500 hover:text-indigo-600"
+          rel="noopener noreferrer"
         >
-          <Candidates
-            key={index}
-            candidates={poll.candidates.items}
-            poll={poll}
-            onUpVote={onUpVote}
-          />
-          <Link to={`/${poll.id}`} className="flex bg-gray-500">
-            <h3 className="text-lg font-bold text-gray-800 hover:text-gray-600">
-              {poll.name}
+          AWS Amplify Hackathon by Hashnode
+        </a>
+        .
+      </p>
+      <p className="py-4 md:w-3/5">
+        Savvy runs on Savvy. Feel free to add new feature requests that you'd
+        like to see implemented in Savvy or up vote your favorite ones that are
+        already listed below. Down voting a feature shows less intrest in it.
+      </p>
+      <h2 className="my-8 text-sm font-bold tracking-wide text-gray-800 uppercase">
+        Feature requests
+      </h2>
+      <div className="mb-8 divide-y divide-gray-300">
+        {state.polls.map((poll, index) => (
+          <div className="flex items-stretch" key={poll.id}>
+            <Candidates
+              key={index}
+              candidates={poll.candidates.items}
+              poll={poll}
+              onUpVote={onUpVote}
+            />
+            <h3 className="flex flex-1 px-8 py-4 text-xl font-semibold border-l">
+              <Link
+                to={`/${poll.id}`}
+                className="text-gray-800 hover:text-gray-600"
+              >
+                {poll.name}
+              </Link>
             </h3>
-          </Link>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
+      <h1 className="mt-8 text-2xl font-semibold text-gray-800">
+        Setup your own Savvy
+      </h1>
+      <p className="py-4 md:w-3/5">
+        Savvy ♥ open source.
+        <br />
+        <br />
+        We build Savvy for developers, entrepreneures, indie hackers, and
+        startups. Deploy your own self-hosted Savvy instance to AWS Amplify with
+        one-click and start building better products.
+        <br />
+        <br />
+        <a
+          href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/liyasthomas/savvy"
+          target="_blank"
+          className="text-indigo-500 hover:text-indigo-600"
+          rel="noopener noreferrer"
+        >
+          Deploy to AWS Amplify
+        </a>
+        <br />
+        <br />
+        Follow the detailed instructions on our{" "}
+        <a
+          href="https://github.com/liyasthomas/savvy"
+          target="_blank"
+          className="text-indigo-500 hover:text-indigo-600"
+          rel="noopener noreferrer"
+        >
+          GitHub repository
+        </a>
+        .
+      </p>
     </div>
   );
 }
