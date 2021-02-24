@@ -1,40 +1,48 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import API from '@aws-amplify/api';
-import Storage from '@aws-amplify/storage';
-import { CLIENT_ID, setVoteForPoll } from './utils/localStorageInfo';
-import { onUpdateByID } from './gql/subscriptions';
-import { getPoll } from './gql/queries';
-import { upVote } from './gql/mutations';
-import Candidates from './Candidates';
-import actionTypes from './actionTypes';
+import API from "@aws-amplify/api";
+import Storage from "@aws-amplify/storage";
+import { CLIENT_ID, setVoteForPoll } from "./utils/localStorageInfo";
+import { onUpdateByID } from "./gql/subscriptions";
+import { getPoll } from "./gql/queries";
+import { upVote } from "./gql/mutations";
+import Candidates from "./Candidates";
+import actionTypes from "./actionTypes";
 
 const initialState = {
   loading: true,
-  poll: {}
-}
+  poll: {},
+};
 
 function reducer(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.SET_POLL:
       return {
-        ...state, poll: action.poll, loading: false
-      }
+        ...state,
+        poll: action.poll,
+        loading: false,
+      };
     case actionTypes.SET_LOADING:
       return {
-        ...state, loading: action.loading
-      }
+        ...state,
+        loading: action.loading,
+      };
     case actionTypes.UPVOTE:
-      const poll = { ...state.poll }
-      const identifiedCandidate = poll.candidates.items.find(c => c.id === action.id)
-      const candidateIndex = poll.candidates.items.findIndex(c => c.id === action.id)
-      identifiedCandidate.upvotes = identifiedCandidate.upvotes + 1
-      poll.candidates.items[candidateIndex] = identifiedCandidate
+      const poll = { ...state.poll };
+      const identifiedCandidate = poll.candidates.items.find(
+        (c) => c.id === action.id
+      );
+      const candidateIndex = poll.candidates.items.findIndex(
+        (c) => c.id === action.id
+      );
+      identifiedCandidate.upvotes = identifiedCandidate.upvotes + 1;
+      poll.candidates.items[candidateIndex] = identifiedCandidate;
       return {
-        ...state, poll
-      }
+        ...state,
+        poll,
+      };
     default:
-      return state
+      return state;
   }
 }
 
@@ -52,28 +60,32 @@ export default function Poll() {
     return () => {
       subscription1 && subscription1.unsubscribe();
       subscription2 && subscription1.unsubscribe();
-    }
-  }, []);
+    };
+  });
 
   async function fetchPoll() {
     try {
       const { id } = params;
-      let { data: { getPoll: pollData }} = await API.graphql({
+      let {
+        data: { getPoll: pollData },
+      } = await API.graphql({
         query: getPoll,
-        variables: { id }
+        variables: { id },
       });
-      if (pollData.type === 'image') {
-        await Promise.all(pollData.candidates.items.map(async c => {
-          const image = await Storage.get(c.image);
-          c.image = image;
-          return image;
-        }));
+      if (pollData.type === "image") {
+        await Promise.all(
+          pollData.candidates.items.map(async (c) => {
+            const image = await Storage.get(c.image);
+            c.image = image;
+            return image;
+          })
+        );
       }
       dispatch({ type: actionTypes.SET_POLL, poll: pollData });
       subscribe(pollData);
-    } catch(err) {
-      console.log('error fetching poll: ', err);
-      history.push('/');
+    } catch (err) {
+      console.log("error fetching poll: ", err);
+      history.push("/");
     }
   }
 
@@ -93,27 +105,37 @@ export default function Poll() {
 
     subscription1 = API.graphql({
       query: onUpdateByID,
-      variables: { id: id1 }
-    })
-    .subscribe({
-      next: apiData => {
-        const { value: { data: { onUpdateByID: { id, clientId }}} } = apiData;
+      variables: { id: id1 },
+    }).subscribe({
+      next: (apiData) => {
+        const {
+          value: {
+            data: {
+              onUpdateByID: { id, clientId },
+            },
+          },
+        } = apiData;
         if (clientId === CLIENT_ID) return;
         dispatch({ type: actionTypes.UPVOTE, id });
-      }
-    })
+      },
+    });
 
     subscription2 = API.graphql({
       query: onUpdateByID,
-      variables: { id: id2 }
-    })
-    .subscribe({
-      next: apiData => {
-        const { value: { data: { onUpdateByID: { id, clientId }}} } = apiData;
+      variables: { id: id2 },
+    }).subscribe({
+      next: (apiData) => {
+        const {
+          value: {
+            data: {
+              onUpdateByID: { id, clientId },
+            },
+          },
+        } = apiData;
         if (clientId === CLIENT_ID) return;
         dispatch({ type: actionTypes.UPVOTE, id });
-      }
-    })
+      },
+    });
   }
 
   async function onUpVote(candidate) {
@@ -124,23 +146,20 @@ export default function Poll() {
     try {
       await API.graphql({
         query: upVote,
-        variables: voteData
+        variables: voteData,
       });
     } catch (err) {
-      console.log('error upvoting: ', err);
+      console.log("error upvoting: ", err);
     }
   }
-  
-  if (state.loading) return <h2>Loading...</h2>
+
+  if (state.loading) return <h2>Loading...</h2>;
 
   return (
     <div>
-      <h1 className="
-      mb-4 mt-8
-      leading-tight
-      sm:leading-normal
-      font-light
-      ">{state.poll.name}</h1>
+      <h1 className="mt-8 mb-4 font-light leading-tight sm:leading-normal">
+        {state.poll.name}
+      </h1>
       <Candidates
         candidates={state.poll.candidates.items}
         poll={state.poll}
@@ -149,5 +168,5 @@ export default function Poll() {
         pollView
       />
     </div>
-  )
+  );
 }

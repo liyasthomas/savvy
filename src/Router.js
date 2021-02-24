@@ -12,9 +12,7 @@ export default function Router() {
     <BrowserRouter>
       <div className="site-container">
         <Header />
-        <div
-          className="w-full px-4  lg:w-main md:px-8 lg:px-0"
-        >
+        <div className="w-full px-4 lg:w-main md:px-8 lg:px-0">
           <Switch>
             <Route exact path="/">
               <Polls />
