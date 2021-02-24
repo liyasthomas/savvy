@@ -154,14 +154,9 @@ export default function Polls() {
   return (
     <div>
       {state.polls.map((poll, index) => (
-        <div
-          className="px-4 py-4 mb-4 border border-gray-800 rounded  bg-almostBlack sm:px-6"
-          key={poll.id}
-        >
+        <div className="px-4 py-4 mb-4 border rounded sm:px-6" key={poll.id}>
           <Link to={`/${poll.id}`}>
-            <h3
-              className="mb-3 text-3xl font-light leading-tight transition-all  sm:leading-normal hover:text-mainPink sm:text-4xl"
-            >
+            <h3 className="mb-3 text-3xl font-light leading-tight transition-all sm:leading-normal hover:text-mainPink sm:text-4xl">
               {poll.name}
             </h3>
           </Link>

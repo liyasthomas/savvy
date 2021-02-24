@@ -1,21 +1,30 @@
-# This or that
+<div align="center">
+  <a href="https://master.dup21zsuytyqn.amplifyapp.com"><img src="savvy.png" alt="Savvy" height="128"></a>
+  <br>
+  <br>
+  <p>
+    <b>Savvy - Build better products with customer feedback</b>
+  </p>
+  <p>
+    <sub>Made with ♥ and <a href="https://aws.amazon.com/amplify">AWS Amplify</a> by
+      <a href="https://github.com/liyasthomas">liyasthomas</a>
+    </sub>
+  </p>
+</div>
 
-Scalable serverless voting app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB
+---
 
-![This or that](thisorthat.jpg)
+Savvy is an scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB.
 
-## To deploy
+## About the app
 
-You can deploy this app and the back end infrastructure in one of two ways:
+While the voting API is built with DynamoDB and AppSync, the main functionality really is within a single GraphQL resolver that sends an atomic update to DynamoDB.
 
-1. The Amplify CLI
-2. One click deploy button
+This atomic update allows the DynamoDB table to stay consistent regardless of the number of other operations that are happening.
 
-### Amplify CLI
+### Develope
 
 1. First install and configure the Amplify CLI.
-
-> For a complete walkthrough of how to configure the CLI, see [this video](https://www.youtube.com/watch?v=fWbM5DLh25U)
 
 ```sh
 $ npm install -g @aws-amplify/cli
@@ -25,7 +34,7 @@ $ amplify configure
 2. Clone the repo, install dependencies
 
 ```sh
-$ git clone https://github.com/dabit3/this-or-that.git
+$ git clone https://github.com/liyasthomas/savvy
 $ cd this-or-that
 $ npm install
 ```
@@ -53,44 +62,4 @@ $ amplify push --y
 
 ```sh
 $ npm start
-```
-
-### One click deploy
-
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/dabit3/this-or-that)
-
-## About the app
-
-While the voting API is built with DynamoDB and AppSync, the main functionality really is within a single GraphQL resolver that sends an atomic update to DynamoDB.
-
-This atomic update allows the DynamoDB table to stay consistent regardless of the number of other operations that are happening.
-
-### Upvote resolver
-
-__Request mapping template__
-
-```vtl
-{
-    "version": "2018-05-29",
-    "operation": "UpdateItem",
-    "key" : {
-      "id" : $util.dynamodb.toDynamoDBJson($context.arguments.id)
-    },
-    "update": {
-      "expression" : "set #upvotes = #upvotes + :updateValue",
-      "expressionNames" : {
-           "#upvotes" : "upvotes"
-       },
-       "expressionValues" : {
-           ":updateValue" : { "N" : 1 }
-       }
-    }
-}
-```
-
-__Response mapping template__
-
-```vtl
-$util.quiet($ctx.result.put("clientId", "$context.arguments.clientId"))
-$util.toJson($ctx.result)
 ```
