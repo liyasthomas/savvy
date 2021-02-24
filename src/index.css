@@ -14,11 +14,15 @@ body {
   font-weight: 500;
   color: #718096;
   font-size: 14px;
-
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body * {
+  outline: none;
 }
 
 code {

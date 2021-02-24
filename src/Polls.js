@@ -161,19 +161,29 @@ export default function Polls() {
 
   return (
     <div>
+      <h1 className="text-2xl font-semibold text-gray-800">
+        Collect feedback from customers and public
+      </h1>
+      <p className="py-4">
+        Savvy is a scalable serverless customer feedback app - built with AWS
+        Amplify, AWS AppSync, and Amazon DynamoDB.
+      </p>
       {state.polls.map((poll, index) => (
-        <div className="px-4 py-4 mb-4 border rounded sm:px-6" key={poll.id}>
-          <Link to={`/${poll.id}`}>
-            <h3 className="mb-3 text-3xl font-light leading-tight transition-all sm:leading-normal hover:text-mainPink sm:text-4xl">
-              {poll.name}
-            </h3>
-          </Link>
+        <div
+          className="flex px-6 py-4 mb-4 bg-gray-100 border border-gray-200 rounded-lg"
+          key={poll.id}
+        >
           <Candidates
             key={index}
             candidates={poll.candidates.items}
             poll={poll}
             onUpVote={onUpVote}
           />
+          <Link to={`/${poll.id}`} className="flex bg-gray-500">
+            <h3 className="text-lg font-bold text-gray-800 hover:text-gray-600">
+              {poll.name}
+            </h3>
+          </Link>
         </div>
       ))}
     </div>

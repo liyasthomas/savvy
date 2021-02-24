@@ -13,7 +13,7 @@ export default function Router() {
     <BrowserRouter>
       <div className="site-container">
         <Header />
-        <div className="container p-8">
+        <div className="container px-4 py-8">
           <Switch>
             <Route exact path="/">
               <Polls />

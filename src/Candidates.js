@@ -54,8 +54,8 @@ export default function Candidates({
         )
       }
       <div
-        className={`flex ${
-          isImage ? "flex-col mt-6" : "flex-col md:flex-row mt-4"
+        className={`flex bg-gray-400 ${
+          isImage ? "flex-col" : "flex-col md:flex-row"
         }`}
       >
         {candidates.map((candidate, index) => {
