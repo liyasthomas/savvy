@@ -142,7 +142,7 @@ export default function CreatePoll() {
             onClick={() => setPollType("image")}
             title="Image"
             emoji="🐶"
-            backgroundColor="#0090ff"
+            backgroundColor="#EF4444"
           />
         </div>
       </div>
@@ -240,7 +240,7 @@ export default function CreatePoll() {
             onClick={createPoll}
             title="Create Poll"
             emoji="🚀"
-            backgroundColor="#0090ff"
+            backgroundColor="#EF4444"
             disabled={isDisabled || isUploading}
           />
         </div>
@@ -255,7 +255,7 @@ const imageStyle = {
   borderRadius: 5,
   marginTop: 10,
   marginBottom: 20,
-  boxShadow: "0px 0px 30px #ff00e4",
+  boxShadow: "0px 0px 30px #10B981",
 };
 
 const inputFileStyle = {
@@ -269,7 +269,7 @@ const inputFileStyle = {
 
 const inputLabelStyle = {
   fontSize: "1.25em",
-  backgroundColor: "#ff00e4",
+  backgroundColor: "#10B981",
   fontWeight: 700,
   padding: "8px 18px",
   color: "white",

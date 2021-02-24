@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { STORAGE_KEY } from "./utils/localStorageInfo";
-import votePink from "./assets/votepink.png";
-import voteBlue from "./assets/voteblue.png";
+import votePink from "./assets/votepink.svg";
+import voteBlue from "./assets/voteblue.svg";
 import Button from "./Button";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -53,24 +53,15 @@ export default function Candidates({
           </div>
         )
       }
-      <div
-        className={`flex bg-gray-400 ${
-          isImage ? "flex-col" : "flex-col md:flex-row"
-        }`}
-      >
+      <div className={`flex ${isImage ? "flex-col" : "flex-col"}`}>
         {candidates.map((candidate, index) => {
           if (poll.type === "text") {
             return (
-              <div className="flex items-center mt-4" key={candidate.id}>
-                <div className="flex mr-4">
-                  <p className="text-2xl font-bold capitalize sm:text-4xl">
-                    {candidate.name}
-                  </p>
-                </div>
+              <div className="flex items-center" key={candidate.id}>
                 <div className="flex items-center">
                   <div
                     style={voteImageContainerStyle(index, candidate.isDisabled)}
-                    className="w-12 md:w-18"
+                    className="p-2 m-4 border rounded-lg"
                   >
                     <img
                       onClick={
@@ -83,17 +74,28 @@ export default function Candidates({
                     />
                   </div>
                   <p
-                    className="w-20 ml-3 text-4xl font-bold "
+                    className="text-2xl font-semibold"
                     style={voteNameStyle(index)}
                   >
                     {candidate.upvotes}
                   </p>
+                </div>
+                <div className="flex ml-6">
+                  <p className="text-2xl font-semibold">{candidate.name}</p>
                 </div>
               </div>
             );
           }
           return (
             <div className="flex items-center" key={candidate.id}>
+              <div className="hidden sm:block">
+                <ImageVoteBlock
+                  poll={poll}
+                  onUpVote={onUpVote}
+                  candidate={candidate}
+                  index={index}
+                />
+              </div>
               <div
                 className={`flex relative ${
                   index === Number(0) ? "mb-4" : "mb-0"
@@ -115,14 +117,6 @@ export default function Candidates({
                     index={index}
                   />
                 </div>
-              </div>
-              <div className="hidden sm:block">
-                <ImageVoteBlock
-                  poll={poll}
-                  onUpVote={onUpVote}
-                  candidate={candidate}
-                  index={index}
-                />
               </div>
             </div>
           );
@@ -150,10 +144,10 @@ export default function Candidates({
 
 function ImageVoteBlock({ index, candidate, poll, onUpVote }) {
   return (
-    <div className="flex items-center ml-0 sm:ml-4">
+    <div className="flex items-center">
       <div
         style={voteImageContainerStyle(index, candidate.isDisabled)}
-        className="w-12 md:w-18"
+        className="p-2 m-4 border rounded-lg"
       >
         <img
           onClick={() => onUpVote(candidate, poll)}
@@ -161,7 +155,7 @@ function ImageVoteBlock({ index, candidate, poll, onUpVote }) {
           alt="Candidate"
         />
       </div>
-      <p className="w-24 ml-3 text-4xl font-bold" style={voteNameStyle(index)}>
+      <p className="text-2xl font-semibold" style={voteNameStyle(index)}>
         {candidate.upvotes}
       </p>
     </div>
@@ -184,7 +178,7 @@ function linkStyle(pollView) {
 
 function candidate1Style(width) {
   return {
-    backgroundColor: "#ff00e4",
+    backgroundColor: "#10B981",
     width: `${width}%`,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
@@ -194,7 +188,7 @@ function candidate1Style(width) {
 
 function candidate2Style(width) {
   return {
-    backgroundColor: "#0090ff",
+    backgroundColor: "#EF4444",
     width: `${width}%`,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
@@ -203,7 +197,7 @@ function candidate2Style(width) {
 }
 
 const voteImageContainerStyle = (index, isDisabled) => ({
-  backgroundColor: index === Number(0) ? "#ff00e4" : "#0090ff",
+  backgroundColor: index === Number(0) ? "#10B981" : "#EF4444",
   boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.125rem 0.25rem",
   borderRadius: 9999,
   opacity: isDisabled ? 0.5 : 1,
@@ -214,7 +208,7 @@ const voteImageContainerStyle = (index, isDisabled) => ({
 function candidateImageStyle(index) {
   const indexzero = index === Number(0);
   return {
-    border: `1px solid ${indexzero ? "#ff00e4" : "#0090ff"}`,
+    border: `1px solid ${indexzero ? "#10B981" : "#EF4444"}`,
     objectFit: "contain",
   };
 }
@@ -222,6 +216,6 @@ function candidateImageStyle(index) {
 function voteNameStyle(index) {
   const indexzero = index === Number(0);
   return {
-    color: indexzero ? "#ff00e4" : "#0090ff",
+    color: indexzero ? "#10B981" : "#EF4444",
   };
 }
