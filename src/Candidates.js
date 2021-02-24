@@ -43,16 +43,11 @@ export default function Candidates({
 
   return (
     <div>
-      {
-        /* This is the data vizualization. Essentially a rectangle filled with the percentage width of each candidate. */
-        pollView && (
-          <div style={dataVizStyle}>
-            <div style={candidate1Style(candidate1)} />
-            <div style={candidate2Style(candidate2)} />
-          </div>
-        )
-      }
-      <div className={`flex w-48 ${isImage ? "flex-col" : "flex-col"}`}>
+      <div
+        className={`flex w-48 ${isImage ? "flex-col" : "flex-col"} ${
+          pollView ? "mt-4" : ""
+        }`}
+      >
         {candidates.map((candidate, index) => {
           if (poll.type === "text") {
             return (
@@ -107,10 +102,18 @@ export default function Candidates({
           );
         })}
       </div>
+      {
+        /* This is the data vizualization. Essentially a rectangle filled with the percentage width of each candidate. */
+        pollView && (
+          <div style={dataVizStyle}>
+            <div style={candidate1Style(candidate1)} />
+            <div style={candidate2Style(candidate2)} />
+          </div>
+        )
+      }
       {pollView && (
         <div className="mt-6">
           <Button
-            emoji="🌍"
             title="Share"
             onClick={() => {
               const url = window.location.href;
@@ -146,9 +149,9 @@ function ImageVoteBlock({ index, candidate, poll, onUpVote }) {
 
 const dataVizStyle = {
   width: "100%",
-  height: 60,
+  height: 46,
   display: "flex",
-  marginTop: 10,
+  marginTop: 16,
   borderRadius: 10,
 };
 

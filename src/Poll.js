@@ -164,7 +164,7 @@ export default function Poll() {
 
   return (
     <div>
-      <h1 className="mt-8 mb-4 font-light leading-tight sm:leading-normal">
+      <h1 className="text-2xl font-semibold text-gray-800">
         {state.poll.name}
       </h1>
       <Candidates
