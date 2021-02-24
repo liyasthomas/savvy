@@ -128,7 +128,9 @@ export default function CreatePoll() {
 
   return (
     <div>
-      <h1 className="text-3xl leading-8 sm:text-5xl">Create a new poll</h1>
+      <h1 className="text-2xl font-semibold text-gray-800">
+        Create new feature request
+      </h1>
       <div>
         <p className="mt-6 text-xl">
           What type of poll would you like to create?

@@ -6,19 +6,23 @@ import Poll from "./Poll";
 import Header from "./Header";
 import Footer from "./Footer";
 import CreatePoll from "./CreatePoll";
+import About from "./About";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <div className="site-container">
         <Header />
-        <div className="w-full px-4 lg:w-main md:px-8 lg:px-0">
+        <div className="container p-8">
           <Switch>
             <Route exact path="/">
               <Polls />
             </Route>
             <Route path="/create">
               <CreatePoll />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             <Route path="/:id">
               <Poll />

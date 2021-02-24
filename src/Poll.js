@@ -8,6 +8,7 @@ import { getPoll } from "./gql/queries";
 import { upVote } from "./gql/mutations";
 import Candidates from "./Candidates";
 import actionTypes from "./actionTypes";
+import loading from "./loading.svg";
 
 const initialState = {
   loading: true,
@@ -153,7 +154,13 @@ export default function Poll() {
     }
   }
 
-  if (state.loading) return <h2>Loading...</h2>;
+  if (state.loading)
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <img className="h-8 m-8" src={loading} alt="Loading" />
+        Loading
+      </div>
+    );
 
   return (
     <div>

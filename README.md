@@ -14,13 +14,9 @@
 
 ---
 
-Savvy is an scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB.
-
 ## About the app
 
-While the voting API is built with DynamoDB and AppSync, the main functionality really is within a single GraphQL resolver that sends an atomic update to DynamoDB.
-
-This atomic update allows the DynamoDB table to stay consistent regardless of the number of other operations that are happening.
+Savvy is a scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB.
 
 ### Develope
 

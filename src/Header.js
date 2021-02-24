@@ -12,17 +12,24 @@ export default function Header() {
   console.log("pathName:", pathname);
   return (
     <div className="container sticky inset-x-0 top-0 flex items-center justify-between w-full px-6 py-4 bg-white">
+      <Link
+        to="/"
+        className="flex items-center justify-center text-lg font-semibold text-gray-600 hover:text-gray-800"
+      >
+        <img className="h-8 mr-4" src={logo} alt="Logo" />
+        Savvy
+      </Link>
       <div className="flex items-center justify-center">
-        <Link to="/">
-          <img className="h-10" src={logo} alt="Logo" />
+        <Link
+          to="/about"
+          className="mr-4 font-semibold text-gray-600 hover:text-gray-800"
+        >
+          About
         </Link>
-        <Link to="/">
-          <h1 className="ml-4 text-lg font-semibold text-gray-600">Savvy</h1>
-        </Link>
+        {pathname !== "/create" && (
+          <Button onClick={createPoll} title="New feature" />
+        )}
       </div>
-      {pathname !== "/create" && (
-        <Button onClick={createPoll} title="New feature" />
-      )}
     </div>
   );
 }

@@ -11,7 +11,9 @@ html {
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  overflow: overlay;
+  font-weight: 500;
+  color: #718096;
+  font-size: 14px;
 
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
