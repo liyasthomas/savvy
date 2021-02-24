@@ -16,8 +16,8 @@ module.exports = {
       almostBlack: "#0b0e13",
       transparent: "transparent",
       current: "currentColor",
-      mainPink: "#10B981",
-      mainBlue: "#EF4444",
+      mainPink: "#8B5CF6",
+      mainBlue: "#3B82F6",
 
       black: "#000",
       white: "#fff",

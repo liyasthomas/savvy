@@ -43,11 +43,7 @@ export default function Candidates({
 
   return (
     <div>
-      <div
-        className={`flex w-48 ${isImage ? "flex-col" : "flex-col"} ${
-          pollView ? "mt-4" : ""
-        }`}
-      >
+      <div className={`flex w-48 flex-col ${pollView ? "mt-4" : ""}`}>
         {candidates.map((candidate, index) => {
           if (poll.type === "text") {
             return (
@@ -157,7 +153,7 @@ const dataVizStyle = {
 
 function candidate1Style(width) {
   return {
-    backgroundColor: "#10B981",
+    backgroundColor: "#8B5CF6",
     width: `${width}%`,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
@@ -167,7 +163,7 @@ function candidate1Style(width) {
 
 function candidate2Style(width) {
   return {
-    backgroundColor: "#EF4444",
+    backgroundColor: "#3B82F6",
     width: `${width}%`,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
@@ -176,7 +172,7 @@ function candidate2Style(width) {
 }
 
 const voteImageContainerStyle = (index, isDisabled) => ({
-  backgroundColor: index === Number(0) ? "#10B981" : "#EF4444",
+  backgroundColor: index === Number(0) ? "#8B5CF6" : "#3B82F6",
   opacity: isDisabled ? 0.5 : 1,
   cursor: isDisabled ? "auto" : "pointer",
 });
@@ -184,7 +180,7 @@ const voteImageContainerStyle = (index, isDisabled) => ({
 function candidateImageStyle(index) {
   // const indexzero = index === Number(0);
   return {
-    // border: `1px solid ${indexzero ? "#10B981" : "#EF4444"}`,
+    // border: `1px solid ${indexzero ? "#8B5CF6" : "#3B82F6"}`,
     objectFit: "contain",
   };
 }
@@ -192,6 +188,6 @@ function candidateImageStyle(index) {
 function voteNameStyle(index) {
   const indexzero = index === Number(0);
   return {
-    color: indexzero ? "#10B981" : "#EF4444",
+    color: indexzero ? "#8B5CF6" : "#3B82F6",
   };
 }

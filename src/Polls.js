@@ -185,7 +185,7 @@ export default function Polls() {
       <h2 className="my-8 text-sm font-bold tracking-wide text-gray-800 uppercase">
         Feature requests
       </h2>
-      <div className="mb-8 divide-y divide-gray-300">
+      <div className="flex flex-col mb-8 divide-y divide-gray-300">
         {state.polls.map((poll, index) => (
           <div className="flex items-stretch" key={poll.id}>
             <Candidates
@@ -241,20 +241,3 @@ export default function Polls() {
     </div>
   );
 }
-
-/* Code I might need later */
-
-// function simulate() {
-//   state.polls.forEach(poll => {
-//     poll.candidates.items.forEach(candidate => simulateUpvotes(candidate, poll))
-//   })
-// }
-
-// function simulateUpvotes(candidate, poll) {
-//   let i = 0;
-//   setInterval(() => {
-//     i = i + 1
-//     if (i > 2000) return
-//     onUpVote(candidate, poll)
-//   })
-// }

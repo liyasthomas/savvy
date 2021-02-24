@@ -129,63 +129,66 @@ export default function CreatePoll() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-800">
+      <h1 className="mb-8 text-2xl font-semibold text-gray-800">
         Create new feature request
       </h1>
       <div>
-        <p className="mt-6 text-xl">
+        <p className="mb-2 font-semibold">
           What type of poll would you like to create?
         </p>
-        <div className="flex mt-8 mb-14">
-          <Button onClick={() => setPollType("text")} title="Text" emoji="🦄" />
+        <div className="flex my-8">
+          <Button
+            onClick={() => setPollType("text")}
+            title="Text"
+            backgroundColor="#00acee"
+          />
           <Button
             onClick={() => setPollType("image")}
             title="Image"
-            emoji="🐶"
-            backgroundColor="#EF4444"
+            backgroundColor="#00acee"
           />
         </div>
       </div>
       {pollType === "text" && (
-        <div className="mt-8">
-          <p className="mb-2 font-bold">What question do you want to ask?</p>
+        <div className="mt-2">
+          <p className="mb-2 font-semibold">Brief description of the feature</p>
           <input
-            placeholder="Question"
+            placeholder="8-10 words"
             name="pollName"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-2 py-1 text-xl text-gray-400 bg-gray-900 border border-gray-800 rounded outline-none"
+            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
           />
-          <p className="mt-4 mb-2 font-bold">First answer</p>
+          <p className="mt-4 mb-2 font-semibold">Up vote label</p>
           <input
-            placeholder="Answer 1"
+            placeholder="Yes"
             name="candidate1"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-2 py-1 text-xl text-gray-400 bg-gray-800 border border-gray-800 rounded outline-none"
+            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
           />
-          <p className="mt-4 mb-2 font-bold">Second answer</p>
+          <p className="mt-4 mb-2 font-semibold">Down vote label</p>
           <input
-            placeholder="Answer 2"
+            placeholder="No"
             name="candidate2"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-2 py-1 text-xl text-gray-400 bg-gray-900 border border-gray-800 rounded outline-none"
+            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
           />
         </div>
       )}
       {pollType === "image" && (
-        <div className="mt-8">
-          <p className="mb-2 font-bold">What question do you want to ask?</p>
+        <div className="mt-2">
+          <p className="mb-2 font-semibold">Brief description of the feature</p>
           <input
-            placeholder="Question"
+            placeholder="8-10 words"
             name="pollName"
             autoComplete="off"
             onChange={onChangeText}
-            className="w-full px-2 py-1 text-xl text-gray-400 bg-gray-800 border border-gray-800 rounded outline-none"
+            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
           />
-          <div className="mt-6">
-            <p className="mt-6 mb-4 font-bold">What is the first option?</p>
+          <div>
+            <p className="mt-4 mb-2 font-semibold">Up vote image</p>
             {state.candidate1 && (
               <img
                 src={state.candidate1.localFile}
@@ -193,7 +196,7 @@ export default function CreatePoll() {
                 alt="Candidate"
               />
             )}
-            <div>
+            <div className="my-8">
               <input
                 type="file"
                 name="candidate1"
@@ -201,11 +204,15 @@ export default function CreatePoll() {
                 style={inputFileStyle}
                 onChange={onChangeImage}
               />
-              <label htmlFor="file1" style={inputLabelStyle}>
+              <label
+                htmlFor="file1"
+                style={inputLabelStyle}
+                className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+              >
                 Choose a file
               </label>
             </div>
-            <p className="mt-6 mb-4 font-bold">What is the second option?</p>
+            <p className="mt-4 mb-2 font-semibold">Down vote image</p>
             {state.candidate2 && (
               <img
                 src={state.candidate2.localFile}
@@ -213,7 +220,7 @@ export default function CreatePoll() {
                 alt="Candidate"
               />
             )}
-            <div>
+            <div className="my-8">
               <input
                 type="file"
                 name="candidate2"
@@ -221,7 +228,11 @@ export default function CreatePoll() {
                 style={inputFileStyle}
                 onChange={onChangeImage}
               />
-              <label htmlFor="file2" style={inputLabelStyle}>
+              <label
+                htmlFor="file2"
+                style={inputLabelStyle}
+                className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+              >
                 Choose a file
               </label>
             </div>
@@ -239,8 +250,7 @@ export default function CreatePoll() {
           <Button
             onClick={createPoll}
             title="Create Poll"
-            emoji="🚀"
-            backgroundColor="#EF4444"
+            backgroundColor="#3B82F6"
             disabled={isDisabled || isUploading}
           />
         </div>
@@ -251,11 +261,10 @@ export default function CreatePoll() {
 
 const imageStyle = {
   width: "100%",
-  maxWidth: 500,
-  borderRadius: 5,
-  marginTop: 10,
-  marginBottom: 20,
-  boxShadow: "0px 0px 30px #10B981",
+  maxWidth: 200,
+  borderRadius: 8,
+  marginTop: 32,
+  marginBottom: 32,
 };
 
 const inputFileStyle = {
@@ -268,11 +277,5 @@ const inputFileStyle = {
 };
 
 const inputLabelStyle = {
-  fontSize: "1.25em",
-  backgroundColor: "#10B981",
-  fontWeight: 700,
-  padding: "8px 18px",
-  color: "white",
-  display: "inlineBlock",
   cursor: "pointer",
 };
