@@ -31,7 +31,7 @@ $ amplify configure
 
 ```sh
 $ git clone https://github.com/liyasthomas/savvy
-$ cd this-or-that
+$ cd savvy
 $ npm install
 ```
 
