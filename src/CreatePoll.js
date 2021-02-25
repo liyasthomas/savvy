@@ -128,8 +128,8 @@ export default function CreatePoll() {
   const isDisabled = !pollType || !candidate1 || !candidate2 || !pollName;
 
   return (
-    <div>
-      <h1 className="mb-8 text-2xl font-semibold text-gray-800">
+    <div className="flex flex-col flex-1">
+      <h1 className="mb-8 text-2xl font-semibold highlight-text">
         Create new feature request
       </h1>
       <div>
@@ -157,7 +157,7 @@ export default function CreatePoll() {
             name="pollName"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+            className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
           />
           <p className="mt-4 mb-2 font-semibold">Up vote label</p>
           <input
@@ -165,7 +165,7 @@ export default function CreatePoll() {
             name="candidate1"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+            className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
           />
           <p className="mt-4 mb-2 font-semibold">Down vote label</p>
           <input
@@ -173,7 +173,7 @@ export default function CreatePoll() {
             name="candidate2"
             onChange={onChangeText}
             autoComplete="off"
-            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+            className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
           />
         </div>
       )}
@@ -185,7 +185,7 @@ export default function CreatePoll() {
             name="pollName"
             autoComplete="off"
             onChange={onChangeText}
-            className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+            className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
           />
           <div>
             <p className="mt-4 mb-2 font-semibold">Up vote image</p>
@@ -207,7 +207,7 @@ export default function CreatePoll() {
               <label
                 htmlFor="file1"
                 style={inputLabelStyle}
-                className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+                className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
               >
                 Choose a file
               </label>
@@ -231,7 +231,7 @@ export default function CreatePoll() {
               <label
                 htmlFor="file2"
                 style={inputLabelStyle}
-                className="w-full px-4 py-2 my-4 text-gray-800 bg-gray-200 rounded-lg outline-none"
+                className="w-full px-4 py-2 my-4 highlight-bg rounded-lg outline-none highlight-text"
               >
                 Choose a file
               </label>
@@ -240,7 +240,7 @@ export default function CreatePoll() {
         </div>
       )}
       {isUploading && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-start mx-auto">
           <img className="h-8 m-8" src={loading} alt="Loading" />
           Uploading
         </div>

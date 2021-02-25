@@ -11,9 +11,9 @@ import About from "./About";
 export default function Router() {
   return (
     <BrowserRouter>
-      <div className="site-container">
+      <div className="flex flex-col items-center min-h-screen">
         <Header />
-        <div className="container px-4 py-8">
+        <div className="container flex flex-1 px-4 py-8">
           <Switch>
             <Route exact path="/">
               <Polls />

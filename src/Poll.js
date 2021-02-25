@@ -156,15 +156,15 @@ export default function Poll() {
 
   if (state.loading)
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-start mx-auto">
         <img className="h-8 m-8" src={loading} alt="Loading" />
         Loading
       </div>
     );
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold text-gray-800">
+    <div className="flex flex-col flex-1">
+      <h1 className="text-2xl font-semibold highlight-text">
         {state.poll.name}
       </h1>
       <Candidates

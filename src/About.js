@@ -1,8 +1,8 @@
 import React from "react";
 export default function About() {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold text-gray-800">
+    <div className="flex flex-col flex-1">
+      <h1 className="text-2xl font-semibold highlight-text">
         Build better products with customer feedback
       </h1>
       <p className="py-4 md:w-3/5">

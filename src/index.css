@@ -12,7 +12,6 @@ body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  color: #718096;
   font-size: 14px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -25,37 +24,65 @@ body * {
   outline: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.site-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.site-content {
-  flex: 1;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  background-color: black;
-}
-
-select option {
-  background-color: black;
-}
-
+body,
 .toast-background {
+  color: #718096;
   background-color: #fff;
+}
+
+header {
+  background-color: #fff;
+}
+
+.link {
+  color: #4B5563
+}
+
+.link:hover {
+  color: #1F2937
+}
+
+.highlight-text {
+  color: #1F2937
+}
+
+.highlight-bg {
+  background-color: #F3F4F6;
+}
+
+.highlight-border {
+  border-color: #F3F4F6;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  body,
+  .toast-background {
+    color: #d0d6e0;
+    background-color: #060606;
+  }
+
+  header {
+    background-color: #060606;
+  }
+
+  .link {
+    color: #95a2b3
+  }
+
+  .link:hover {
+    color: #f7f8f8
+  }
+
+  .highlight-text {
+    color: #f7f8f8
+  }
+
+  .highlight-bg {
+    background-color: #0c0c0c;
+  }
+
+  .highlight-border {
+    border-color: #0c0c0c;
+  }
 }

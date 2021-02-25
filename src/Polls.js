@@ -153,15 +153,15 @@ export default function Polls() {
   }
   if (state.loading)
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-start mx-auto">
         <img className="h-8 m-8" src={loading} alt="Loading" />
         Loading
       </div>
     );
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold text-gray-800">
+    <div className="flex flex-col flex-1">
+      <h1 className="text-2xl font-semibold highlight-text">
         Collect feedback from customers and public
       </h1>
       <p className="py-4 md:w-3/5">
@@ -182,30 +182,27 @@ export default function Polls() {
         like to see implemented in Savvy or up vote your favorite ones that are
         already listed below. Down voting a feature shows less intrest in it.
       </p>
-      <h2 className="my-8 text-sm font-bold tracking-wide text-gray-800 uppercase">
+      <h2 className="my-8 text-sm font-bold tracking-wide uppercase highlight-text">
         Feature requests
       </h2>
-      <div className="flex flex-col mb-8 divide-y divide-gray-300">
+      <div className="flex flex-col mb-8 divide-y">
         {state.polls.map((poll, index) => (
-          <div className="flex items-stretch" key={poll.id}>
+          <div className="flex items-stretch highlight-border" key={poll.id}>
             <Candidates
               key={index}
               candidates={poll.candidates.items}
               poll={poll}
               onUpVote={onUpVote}
             />
-            <h3 className="flex flex-1 px-8 py-4 text-xl font-semibold border-l">
-              <Link
-                to={`/${poll.id}`}
-                className="text-gray-800 hover:text-gray-600"
-              >
+            <h3 className="flex flex-1 px-8 py-4 text-xl font-semibold border-l highlight-border">
+              <Link to={`/${poll.id}`} className="link">
                 {poll.name}
               </Link>
             </h3>
           </div>
         ))}
       </div>
-      <h1 className="mt-8 text-2xl font-semibold text-gray-800">
+      <h1 className="mt-8 text-2xl font-semibold highlight-text">
         Setup your own Savvy
       </h1>
       <p className="py-4 md:w-3/5">

@@ -12,7 +12,7 @@ export default function Candidates({
   simulateUpvotes,
   pollView = false,
 }) {
-  const isImage = poll.type === "image";
+  // const isImage = poll.type === "image";
   let totalUpvotes;
   let candidate1;
   let candidate2;
@@ -51,7 +51,7 @@ export default function Candidates({
                 <div className="flex items-center">
                   <div
                     style={voteImageContainerStyle(index, candidate.isDisabled)}
-                    className="p-2 m-4 border rounded-lg"
+                    className="flex flex-shrink-0 p-2 m-4 rounded-lg"
                     onClick={
                       candidate.isDisabled
                         ? null
@@ -131,7 +131,7 @@ function ImageVoteBlock({ index, candidate, poll, onUpVote }) {
     <div className="flex items-center">
       <div
         style={voteImageContainerStyle(index, candidate.isDisabled)}
-        className="p-2 m-4 border rounded-lg"
+        className="flex flex-shrink-0 p-2 m-4 rounded-lg"
         onClick={() => onUpVote(candidate, poll)}
       >
         <img src={index === Number(0) ? votePink : voteBlue} alt="Candidate" />
