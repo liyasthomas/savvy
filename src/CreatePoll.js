@@ -30,8 +30,8 @@ export default function CreatePoll() {
     setState(() => ({ ...initialState, pollType: type }));
   }
 
-  function onChangeText(e) {
-    const { name, value } = e.target;
+  function onChangeText({ target }) {
+    const { name, value } = target;
     setState((currentState) => ({ ...currentState, [name]: value }));
   }
   async function onChangeImage(e) {

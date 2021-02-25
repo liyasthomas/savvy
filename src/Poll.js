@@ -32,10 +32,10 @@ function reducer(state, action) {
     case actionTypes.UPVOTE:
       const poll = { ...state.poll };
       const identifiedCandidate = poll.candidates.items.find(
-        (c) => c.id === action.id
+        ({ id }) => id === action.id
       );
       const candidateIndex = poll.candidates.items.findIndex(
-        (c) => c.id === action.id
+        ({ id }) => id === action.id
       );
       identifiedCandidate.upvotes = identifiedCandidate.upvotes + 1;
       poll.candidates.items[candidateIndex] = identifiedCandidate;
@@ -100,8 +100,8 @@ export default function Poll() {
     }, 1);
   }
 
-  function subscribe(pollData) {
-    const { items } = pollData.candidates;
+  function subscribe({ candidates }) {
+    const { items } = candidates;
     const id1 = items[0].id;
     const id2 = items[1].id;
 
@@ -140,11 +140,11 @@ export default function Poll() {
     });
   }
 
-  async function onUpVote(candidate) {
-    const limitReached = setVoteForPoll(state.poll.id, candidate.id);
+  async function onUpVote({ id }) {
+    const limitReached = setVoteForPoll(state.poll.id, id);
     if (limitReached) return;
-    dispatch({ type: actionTypes.UPVOTE, id: candidate.id });
-    const voteData = { id: candidate.id, clientId: CLIENT_ID };
+    dispatch({ type: actionTypes.UPVOTE, id: id });
+    const voteData = { id: id, clientId: CLIENT_ID };
     try {
       await API.graphql({
         query: upVote,

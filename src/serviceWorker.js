@@ -103,12 +103,12 @@ function checkValidServiceWorker(swUrl, config) {
   fetch(swUrl, {
     headers: { "Service-Worker": "script" },
   })
-    .then((response) => {
+    .then(({ headers, status }) => {
       // Ensure service worker exists, and that we really are getting a JS file.
-      const contentType = response.headers.get("content-type");
+      const contentType = headers.get("content-type");
       if (
-        response.status === 404 ||
-        (contentType != null && contentType.indexOf("javascript") === -1)
+        status === 404 ||
+        (contentType != null && !contentType.includes("javascript"))
       ) {
         // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then((registration) => {
@@ -134,8 +134,8 @@ export function unregister() {
       .then((registration) => {
         registration.unregister();
       })
-      .catch((error) => {
-        console.error(error.message);
+      .catch(({ message }) => {
+        console.error(message);
       });
   }
 }

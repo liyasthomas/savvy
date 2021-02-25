@@ -26,13 +26,13 @@ function reducer(state, action) {
     case actionTypes.UPVOTE:
       const { pollId, candidateId } = action;
       const polls = state.polls;
-      const poll = polls.find((p) => p.id === pollId);
-      const pollIndex = polls.findIndex((p) => p.id === pollId);
+      const poll = polls.find(({ id }) => id === pollId);
+      const pollIndex = polls.findIndex(({ id }) => id === pollId);
       const identifiedCandidate = poll.candidates.items.find(
-        (c) => c.id === candidateId
+        ({ id }) => id === candidateId
       );
       const candidateIndex = poll.candidates.items.findIndex(
-        (c) => c.id === candidateId
+        ({ id }) => id === candidateId
       );
       identifiedCandidate.upvotes = identifiedCandidate.upvotes + 1;
       polls[pollIndex].candidates.items[candidateIndex] = identifiedCandidate;
@@ -67,9 +67,9 @@ export default function Polls() {
       },
     });
     await Promise.all(
-      pollData.data.itemsByType.items.map(async (poll) => {
+      pollData.data.itemsByType.items.map(async ({ candidates }) => {
         await Promise.all(
-          poll.candidates.items.map(async (c) => {
+          candidates.items.map(async (c) => {
             const image = await Storage.get(c.image);
             c.image = image;
             return image;
@@ -129,13 +129,13 @@ export default function Polls() {
     const limitReached = setVoteForPoll(pollId, candidateId);
     if (limitReached) return;
     const polls = state.polls;
-    const poll = polls.find((p) => p.id === pollId);
-    const pollIndex = polls.findIndex((p) => p.id === pollId);
+    const poll = polls.find(({ id }) => id === pollId);
+    const pollIndex = polls.findIndex(({ id }) => id === pollId);
     const identifiedCandidate = poll.candidates.items.find(
-      (c) => c.id === candidateId
+      ({ id }) => id === candidateId
     );
     const candidateIndex = poll.candidates.items.findIndex(
-      (c) => c.id === candidateId
+      ({ id }) => id === candidateId
     );
     identifiedCandidate.upvotes = identifiedCandidate.upvotes + 1;
     polls[pollIndex].candidates.items[candidateIndex] = identifiedCandidate;
