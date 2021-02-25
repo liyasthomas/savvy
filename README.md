@@ -16,7 +16,63 @@
 
 ## About the app
 
-Savvy is a scalable serverless customer feedback app - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB on [AWS Amplify Hackathon by Hashnode](https://townhall.hashnode.com/announcing-aws-amplify-hackathon-on-hashnode).
+Savvy is a scalable serverless customer feedback tool for developers, indie hackers, entrepreneurs and startups - built with AWS Amplify, AWS AppSync, and Amazon DynamoDB on [AWS Amplify Hackathon by Hashnode](https://townhall.hashnode.com/announcing-aws-amplify-hackathon-on-hashnode).
+
+### Features
+
+- Capture feedbacks from your customers and public in **one organized place.**
+
+  Give voice to your community, get valuable suggestions and prioritize what they need the most.
+
+- Text and image polls.
+
+- Custom labels for options.
+
+- Self-hostable + scalable + serverless.
+
+  One click deployment to AWA Amplify.
+
+- **Your own domain.**
+
+  When using AWS Amplify hosting service, you can use your own domain and get a free TLS certificate to keep it secure.
+
+- Shareable link for individual feature requests.
+
+  Invite your customers to create, vote and prioritize feedback.
+
+- Dark mode
+
+- Disqus comments.
+
+  Share ideas, vote and discuss.
+
+- Open source.
+
+### Demo
+
+[Savvy](https://master.dup21zsuytyqn.amplifyapp.com/)
+
+### Get started
+
+**How Savvy works**
+
+Three simple steps to understand the workflow.
+
+1. Setup
+
+   Use one-click deploy to AWS Amplify or follow detailed instructions on GitHub repository. Update Discus short name. Customize with your own logo, colors and text.
+
+2. Collect
+
+   Invite your customers to your new Savvy site. They'll be able to suggest new ideas, submit feature requests or report issues they have with your product. Publish your Savvy site on any hosting service to accept public feedbacks.
+
+3. Deliver
+
+   Keep your customers in the loop by responding to their suggestions. Customers will be notified of any new action on their topics of interest. Prioritize feature requests and feedbacks internally.
+
+### Deploy
+
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/liyasthomas/savvy)
 
 ### Develop
 
@@ -59,7 +115,3 @@ $ amplify push --y
 ```sh
 $ npm start
 ```
-
-## Deploy
-
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/liyasthomas/savvy)
